@@ -59,5 +59,3 @@ O site inclui:
 Este projeto é de uso livre. Sinta-se à vontade para personalizar!
 
 ---
-
-Feito com ❤️ e ⚡ por NovaTech
