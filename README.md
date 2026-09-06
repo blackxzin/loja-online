@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <a href="https://blackxzin.github.io/loja-online/"><strong>Ver demo ao vivo →</strong></a>
+  <a href="https://loja-online-one-eta.vercel.app/"><strong>Ver demo ao vivo →</strong></a>
 </p>
 
 <p align="center">
@@ -15,6 +15,7 @@
   <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-f7df1e?style=flat-square&logo=javascript&logoColor=black">
   <img alt="Sem dependências" src="https://img.shields.io/badge/depend%C3%AAncias-0-2E5BFF?style=flat-square">
   <img alt="WCAG 2.2 AA" src="https://img.shields.io/badge/WCAG%202.2-AA-0B7A48?style=flat-square">
+  <a href="https://loja-online-one-eta.vercel.app/"><img alt="Deploy na Vercel" src="https://img.shields.io/badge/deploy-Vercel-000000?style=flat-square&logo=vercel&logoColor=white"></a>
 </p>
 
 <p align="center">
@@ -169,14 +170,29 @@ Não há passo de build, instalação ou variável de ambiente.
 
 ## Deploy
 
-Pronto para GitHub Pages:
+O site está no ar na Vercel: **[loja-online-one-eta.vercel.app](https://loja-online-one-eta.vercel.app/)**
 
-1. **Settings → Pages**
-2. Source: **Deploy from a branch**
-3. Branch `master`, pasta `/ (root)`
-4. Salvar e aguardar o deploy
+Como é estático puro, não há configuração de build — basta importar o repositório
+e apontar para a raiz:
 
-Funciona igual em Netlify, Vercel ou qualquer host estático — basta apontar para a raiz do repositório.
+| | |
+|---|---|
+| Framework Preset | `Other` |
+| Build Command | *(vazio)* |
+| Output Directory | `.` |
+
+Cada push na `master` publica automaticamente.
+
+<details>
+<summary>Outras opções de host</summary>
+
+**GitHub Pages** — Settings → Pages → Source `Deploy from a branch` → branch `master`, pasta `/ (root)`
+
+**Netlify** — arraste a pasta do projeto na área de deploy, ou conecte o repositório sem build command
+
+Qualquer host estático serve: são três arquivos e nenhuma dependência de runtime.
+
+</details>
 
 ---
 
