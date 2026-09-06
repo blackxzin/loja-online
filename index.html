@@ -1,501 +1,485 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NovaTech - Loja online de tecnologia premium. Encontre os melhores gadgets, eletrônicos e acessórios com os melhores preços.">
-    <meta name="keywords" content="loja online, tecnologia, eletrônicos, gadgets, fones, smartwatch, acessórios">
+    <meta name="description" content="NovaTech - Loja online de tecnologia premium. Fones, smartwatches, câmeras, gaming e acessórios com frete grátis acima de R$ 299.">
+    <meta name="keywords" content="loja online, tecnologia, eletrônicos, gadgets, fones, smartwatch, câmera, gaming, acessórios">
     <meta name="author" content="NovaTech">
+    <meta name="theme-color" content="#0E0F13" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#F8F7F4" media="(prefers-color-scheme: light)">
+    <meta name="color-scheme" content="dark light">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="NovaTech | Loja de Tecnologia Premium">
+    <meta property="og:description" content="Gadgets selecionados, preço justo e entrega para todo o Brasil.">
+    <meta property="og:locale" content="pt_BR">
+
     <title>NovaTech | Loja de Tecnologia Premium</title>
 
-    <!-- Google Fonts -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%230F1116' fill-rule='evenodd' d='M50%200%20a46%2050%200%201%200%20.1%200%20Z%20M50%2013.91%20a26.71%2036.09%200%201%201%20-.1%200%20Z'/%3E%3Cpath fill='%232E5BFF' d='M50.00%2014.63%20C53.66%2037.97%2058.90%2045.05%2076.18%2050.00%20C58.90%2054.95%2053.66%2062.03%2050.00%2085.37%20C46.34%2062.03%2041.10%2054.95%2023.82%2050.00%20C41.10%2045.05%2046.34%2037.97%2050.00%2014.63%20Z'/%3E%3C/svg%3E">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+    <script src="app.js" defer></script>
+    <script>
+        // Aplica o tema antes da primeira pintura para evitar flash de cor errada.
+        (function () {
+            try {
+                var stored = localStorage.getItem('novatech-theme');
+                var theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (e) { /* localStorage bloqueado: mantém o tema padrão */ }
+        })();
+    </script>
 </head>
 <body>
+    <a href="#products" class="skip-link">Pular para os produtos</a>
+
     <!-- Announcement Bar -->
-    <div class="announcement-bar" id="announcement-bar">
-        <p>🔥 FRETE GRÁTIS em compras acima de R$ 299 | Use o cupom <strong>NOVA10</strong> para 10% OFF</p>
-        <button class="announcement-close" id="announcement-close" aria-label="Fechar anúncio">
-            <i data-lucide="x" class="icon-sm"></i>
-        </button>
+    <div class="announcement" id="announcement">
+        <div class="container announcement-inner">
+            <p>
+                <i data-lucide="truck" class="icon-sm"></i>
+                Frete grátis acima de <strong>R$ 299</strong> · cupom
+                <button class="coupon-chip" id="coupon-copy" type="button" title="Copiar cupom">NOVA10 <i data-lucide="copy" class="icon-xs"></i></button>
+                para <strong>10% OFF</strong>
+            </p>
+            <button class="announcement-close" id="announcement-close" aria-label="Fechar aviso" type="button">
+                <i data-lucide="x" class="icon-sm"></i>
+            </button>
+        </div>
     </div>
 
     <!-- Header -->
     <header class="header" id="header">
         <div class="container header-inner">
-            <a href="#" class="logo" id="logo">
-                <span class="logo-icon">⚡</span>
-                <span class="logo-text">Nova<span class="logo-accent">Tech</span></span>
+            <a href="#home" class="logo" aria-label="NovaTech — ir para o início">
+                <span class="logo-word" aria-hidden="true">N<svg class="logo-nova" viewBox="0 0 100 100" role="presentation"><path class="logo-ring" fill="currentColor" fill-rule="evenodd" d="M50 0 a46 50 0 1 0 .1 0 Z M50 13.91 a26.71 36.09 0 1 1 -.1 0 Z"/><path class="logo-star" d="M50.00 14.63 C53.66 37.97 58.90 45.05 76.18 50.00 C58.90 54.95 53.66 62.03 50.00 85.37 C46.34 62.03 41.10 54.95 23.82 50.00 C41.10 45.05 46.34 37.97 50.00 14.63 Z"/></svg>VA</span>
+                <span class="logo-rule" aria-hidden="true"></span>
+                <span class="logo-tech" aria-hidden="true">TECH</span>
             </a>
 
-            <nav class="nav" id="nav">
-                <a href="#home" class="nav-link active" data-nav>Início</a>
-                <a href="#products" class="nav-link" data-nav>Produtos</a>
+            <nav class="nav" id="nav" aria-label="Navegação principal">
+                <a href="#home" class="nav-link is-active" data-nav>Início</a>
                 <a href="#categories" class="nav-link" data-nav>Categorias</a>
+                <a href="#products" class="nav-link" data-nav>Produtos</a>
                 <a href="#deals" class="nav-link" data-nav>Ofertas</a>
                 <a href="#about" class="nav-link" data-nav>Sobre</a>
                 <a href="#contact" class="nav-link" data-nav>Contato</a>
             </nav>
 
             <div class="header-actions">
-                <button class="header-btn" id="search-btn" aria-label="Buscar">
+                <button class="header-btn header-search" id="search-btn" type="button" aria-label="Buscar produtos" title="Buscar (Ctrl K)">
                     <i data-lucide="search" class="icon"></i>
+                    <span class="header-search-label">Buscar</span>
+                    <kbd class="kbd">Ctrl K</kbd>
                 </button>
-                <button class="header-btn" id="wishlist-btn" aria-label="Lista de desejos">
+                <button class="header-btn" id="theme-btn" type="button" aria-label="Alternar tema claro e escuro" title="Alternar tema">
+                    <i data-lucide="sun" class="icon icon-sun"></i>
+                    <i data-lucide="moon" class="icon icon-moon"></i>
+                </button>
+                <button class="header-btn" id="wishlist-btn" type="button" aria-label="Lista de desejos" title="Favoritos">
                     <i data-lucide="heart" class="icon"></i>
-                    <span class="badge" id="wishlist-count">0</span>
+                    <span class="badge" id="wishlist-count" aria-hidden="true">0</span>
                 </button>
-                <button class="header-btn" id="cart-btn" aria-label="Carrinho">
+                <button class="header-btn" id="cart-btn" type="button" aria-label="Abrir carrinho" title="Carrinho">
                     <i data-lucide="shopping-bag" class="icon"></i>
-                    <span class="badge" id="cart-count">0</span>
+                    <span class="badge badge-accent" id="cart-count" aria-hidden="true">0</span>
                 </button>
-                <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+                <button class="header-btn menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
                     <i data-lucide="menu" class="icon"></i>
                 </button>
             </div>
         </div>
+        <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
     </header>
 
-    <!-- Search Modal -->
-    <div class="search-modal" id="search-modal">
-        <div class="search-modal-content">
-            <div class="search-input-wrapper">
-                <i data-lucide="search" class="icon search-icon"></i>
-                <input type="text" id="search-input" placeholder="O que você está procurando?" autocomplete="off">
-                <button class="search-close" id="search-close">
+    <div class="scrim" id="scrim" hidden></div>
+
+    <!-- Search -->
+    <div class="search-modal" id="search-modal" role="dialog" aria-modal="true" aria-label="Buscar produtos" hidden>
+        <div class="search-panel">
+            <div class="search-field">
+                <i data-lucide="search" class="icon"></i>
+                <input type="search" id="search-input" placeholder="Buscar por fone, smartwatch, câmera…" autocomplete="off" aria-label="Termo de busca" role="combobox" aria-expanded="false" aria-controls="search-results">
+                <button class="icon-btn" id="search-close" type="button" aria-label="Fechar busca">
                     <i data-lucide="x" class="icon"></i>
                 </button>
             </div>
-            <div class="search-results" id="search-results"></div>
+            <div class="search-body">
+                <div class="search-suggestions" id="search-suggestions">
+                    <span class="search-suggestions-label">Buscas populares</span>
+                    <div class="chip-row">
+                        <button class="chip" type="button" data-suggest="fone">Fone</button>
+                        <button class="chip" type="button" data-suggest="smartwatch">Smartwatch</button>
+                        <button class="chip" type="button" data-suggest="teclado">Teclado</button>
+                        <button class="chip" type="button" data-suggest="câmera">Câmera</button>
+                        <button class="chip" type="button" data-suggest="carregador">Carregador</button>
+                    </div>
+                </div>
+                <div class="search-results" id="search-results" role="listbox" aria-label="Resultados"></div>
+            </div>
         </div>
     </div>
 
-    <!-- Cart Sidebar -->
-    <div class="cart-overlay" id="cart-overlay"></div>
-    <aside class="cart-sidebar" id="cart-sidebar">
-        <div class="cart-header">
-            <h3>Seu Carrinho</h3>
-            <button class="cart-close" id="cart-close">
+    <!-- Cart -->
+    <aside class="drawer cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-label="Carrinho de compras" hidden>
+        <header class="drawer-header">
+            <h2 class="drawer-title">Carrinho <span class="drawer-count" id="cart-items-label">0 itens</span></h2>
+            <button class="icon-btn" id="cart-close" type="button" aria-label="Fechar carrinho">
                 <i data-lucide="x" class="icon"></i>
             </button>
-        </div>
-        <div class="cart-items" id="cart-items">
-            <div class="cart-empty" id="cart-empty">
-                <i data-lucide="shopping-bag" class="icon-xl"></i>
-                <p>Seu carrinho está vazio</p>
-                <a href="#products" class="btn btn-primary btn-sm" id="cart-shop-btn">Explorar Produtos</a>
+        </header>
+
+        <div class="shipping-meter" id="shipping-meter">
+            <p class="shipping-meter-text" id="shipping-meter-text">Adicione R$ 299,00 para ganhar frete grátis</p>
+            <div class="meter" role="progressbar" aria-label="Progresso para o frete grátis" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="shipping-meter-bar">
+                <span class="meter-fill" id="shipping-meter-fill"></span>
             </div>
         </div>
-        <div class="cart-footer" id="cart-footer" style="display: none;">
-            <div class="cart-summary">
-                <div class="cart-summary-row">
-                    <span>Subtotal</span>
-                    <span id="cart-subtotal">R$ 0,00</span>
-                </div>
-                <div class="cart-summary-row">
-                    <span>Frete</span>
-                    <span id="cart-shipping">Grátis</span>
-                </div>
-                <div class="cart-summary-row cart-total">
-                    <span>Total</span>
-                    <span id="cart-total">R$ 0,00</span>
-                </div>
-            </div>
-            <button class="btn btn-primary btn-block" id="checkout-btn">
-                Finalizar Compra
+
+        <div class="drawer-body" id="cart-items"></div>
+
+        <div class="empty-state" id="cart-empty">
+            <i data-lucide="shopping-bag" class="icon-xl"></i>
+            <p class="empty-title">Seu carrinho está vazio</p>
+            <p class="empty-text">Explore o catálogo e adicione seus favoritos.</p>
+            <button class="btn btn-primary" data-close-drawer data-goto="#products" type="button">Ver produtos</button>
+        </div>
+
+        <footer class="drawer-footer" id="cart-footer" hidden>
+            <form class="coupon-form" id="coupon-form">
+                <label class="sr-only" for="coupon-input">Cupom de desconto</label>
+                <input type="text" id="coupon-input" placeholder="Cupom de desconto" autocomplete="off">
+                <button class="btn btn-ghost" type="submit">Aplicar</button>
+            </form>
+            <dl class="summary">
+                <div class="summary-row"><dt>Subtotal</dt><dd id="cart-subtotal">R$ 0,00</dd></div>
+                <div class="summary-row summary-discount" id="cart-discount-row" hidden><dt>Desconto <span class="tag tag-success" id="cart-coupon-tag"></span></dt><dd id="cart-discount">- R$ 0,00</dd></div>
+                <div class="summary-row"><dt>Frete</dt><dd id="cart-shipping">Grátis</dd></div>
+                <div class="summary-row summary-total"><dt>Total</dt><dd id="cart-total">R$ 0,00</dd></div>
+            </dl>
+            <p class="summary-installments" id="cart-installments"></p>
+            <button class="btn btn-primary btn-block" id="checkout-btn" type="button">
+                Finalizar compra
                 <i data-lucide="arrow-right" class="icon-sm"></i>
             </button>
+            <p class="drawer-note"><i data-lucide="shield-check" class="icon-xs"></i> Pagamento seguro · troca grátis em 30 dias</p>
+        </footer>
+    </aside>
+
+    <!-- Wishlist -->
+    <aside class="drawer wishlist-drawer" id="wishlist-drawer" role="dialog" aria-modal="true" aria-label="Lista de desejos" hidden>
+        <header class="drawer-header">
+            <h2 class="drawer-title">Favoritos <span class="drawer-count" id="wishlist-items-label">0 itens</span></h2>
+            <button class="icon-btn" id="wishlist-close" type="button" aria-label="Fechar favoritos">
+                <i data-lucide="x" class="icon"></i>
+            </button>
+        </header>
+        <div class="drawer-body" id="wishlist-items"></div>
+        <div class="empty-state" id="wishlist-empty">
+            <i data-lucide="heart" class="icon-xl"></i>
+            <p class="empty-title">Nenhum favorito ainda</p>
+            <p class="empty-text">Toque no coração de um produto para salvá-lo aqui.</p>
+            <button class="btn btn-primary" data-close-drawer data-goto="#products" type="button">Ver produtos</button>
         </div>
     </aside>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
+    <!-- Quick view -->
+    <div class="modal" id="quickview" role="dialog" aria-modal="true" aria-labelledby="quickview-name" hidden>
+        <div class="modal-panel" id="quickview-panel"></div>
+    </div>
+
+    <main id="main">
+        <!-- Hero -->
         <section class="hero" id="home">
-            <div class="hero-bg">
-                <div class="hero-gradient"></div>
-                <div class="hero-particles" id="hero-particles"></div>
-            </div>
-            <div class="container hero-content">
-                <div class="hero-text">
-                    <span class="hero-badge">
-                        <i data-lucide="zap" class="icon-sm"></i>
-                        Novos Lançamentos 2026
+            <div class="hero-backdrop" aria-hidden="true"></div>
+            <div class="container hero-inner">
+                <div class="hero-copy">
+                    <span class="eyebrow">
+                        <span class="dot"></span>
+                        Coleção 2026 · 24 produtos
                     </span>
                     <h1 class="hero-title">
-                        Tecnologia que<br>
-                        <span class="gradient-text">transforma</span> seu dia a dia
+                        Tecnologia escolhida<br>
+                        <em>uma peça por vez.</em>
                     </h1>
-                    <p class="hero-description">
-                        Descubra os gadgets mais inovadores do mercado. Qualidade premium, 
-                        design excepcional e tecnologia de ponta em um só lugar.
+                    <p class="hero-text">
+                        Catálogo curado de áudio, wearables, imagem e periféricos.
+                        Produtos originais, garantia estendida e entrega para todo o Brasil.
                     </p>
                     <div class="hero-actions">
                         <a href="#products" class="btn btn-primary btn-lg">
                             <i data-lucide="shopping-bag" class="icon-sm"></i>
-                            Ver Produtos
+                            Explorar catálogo
                         </a>
                         <a href="#deals" class="btn btn-outline btn-lg">
-                            <i data-lucide="percent" class="icon-sm"></i>
-                            Ver Ofertas
+                            <i data-lucide="tag" class="icon-sm"></i>
+                            Ofertas da semana
                         </a>
                     </div>
-                    <div class="hero-stats">
-                        <div class="stat">
-                            <span class="stat-number" data-count="2500">0</span>
-                            <span class="stat-label">Produtos</span>
+                    <dl class="hero-stats">
+                        <div class="hero-stat">
+                            <dt class="hero-stat-label">Produtos</dt>
+                            <dd class="hero-stat-value" data-count="2500" data-suffix="+">0</dd>
                         </div>
-                        <div class="stat">
-                            <span class="stat-number" data-count="15000">0</span>
-                            <span class="stat-label">Clientes</span>
+                        <div class="hero-stat">
+                            <dt class="hero-stat-label">Clientes</dt>
+                            <dd class="hero-stat-value" data-count="15000" data-suffix="+">0</dd>
                         </div>
-                        <div class="stat">
-                            <span class="stat-number" data-count="4.9" data-decimal="true">0</span>
-                            <span class="stat-label">Avaliação</span>
+                        <div class="hero-stat">
+                            <dt class="hero-stat-label">Avaliação</dt>
+                            <dd class="hero-stat-value" data-count="4.9" data-decimals="1">0</dd>
                         </div>
-                    </div>
+                    </dl>
                 </div>
-                <div class="hero-visual">
-                    <div class="hero-card-stack">
-                        <div class="hero-floating-card card-1">
-                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop" alt="Fone de ouvido premium">
-                        </div>
-                        <div class="hero-floating-card card-2">
-                            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop" alt="Smartwatch moderno">
-                        </div>
-                        <div class="hero-floating-card card-3">
-                            <img src="https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=400&h=400&fit=crop" alt="Acessórios tech">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-scroll">
-                <a href="#products" class="scroll-indicator">
-                    <i data-lucide="chevron-down" class="icon"></i>
-                </a>
-            </div>
-        </section>
 
-        <!-- Trust Bar -->
-        <section class="trust-bar">
-            <div class="container">
-                <div class="trust-grid">
-                    <div class="trust-item">
-                        <i data-lucide="truck" class="icon-lg"></i>
-                        <div>
-                            <strong>Frete Grátis</strong>
-                            <span>Acima de R$ 299</span>
-                        </div>
-                    </div>
-                    <div class="trust-item">
-                        <i data-lucide="shield-check" class="icon-lg"></i>
-                        <div>
-                            <strong>Compra Segura</strong>
-                            <span>Pagamento protegido</span>
-                        </div>
-                    </div>
-                    <div class="trust-item">
-                        <i data-lucide="rotate-ccw" class="icon-lg"></i>
-                        <div>
-                            <strong>Troca Grátis</strong>
-                            <span>Em até 30 dias</span>
-                        </div>
-                    </div>
-                    <div class="trust-item">
-                        <i data-lucide="headphones" class="icon-lg"></i>
-                        <div>
-                            <strong>Suporte 24h</strong>
-                            <span>Atendimento dedicado</span>
-                        </div>
-                    </div>
+                <div class="hero-showcase" id="hero-showcase">
+                    <!-- Vitrine renderizada via JS a partir do catálogo -->
                 </div>
             </div>
         </section>
 
-        <!-- Categories Section -->
-        <section class="section categories-section" id="categories">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Navegue por</span>
-                    <h2 class="section-title">Categorias</h2>
-                    <p class="section-subtitle">Encontre o que procura de forma rápida e fácil</p>
+        <!-- Trust -->
+        <section class="trust" aria-label="Nossas garantias">
+            <div class="container trust-grid">
+                <div class="trust-item">
+                    <i data-lucide="truck" class="icon-lg"></i>
+                    <div><strong>Frete grátis</strong><span>Acima de R$ 299</span></div>
                 </div>
-                <div class="categories-grid">
-                    <a href="#products" class="category-card" data-category="headphones">
-                        <div class="category-icon">
-                            <i data-lucide="headphones" class="icon-xl"></i>
-                        </div>
-                        <h3>Fones</h3>
-                        <span class="category-count">24 produtos</span>
-                    </a>
-                    <a href="#products" class="category-card" data-category="watches">
-                        <div class="category-icon">
-                            <i data-lucide="watch" class="icon-xl"></i>
-                        </div>
-                        <h3>Relógios</h3>
-                        <span class="category-count">18 produtos</span>
-                    </a>
-                    <a href="#products" class="category-card" data-category="speakers">
-                        <div class="category-icon">
-                            <i data-lucide="speaker" class="icon-xl"></i>
-                        </div>
-                        <h3>Caixas de Som</h3>
-                        <span class="category-count">15 produtos</span>
-                    </a>
-                    <a href="#products" class="category-card" data-category="cameras">
-                        <div class="category-icon">
-                            <i data-lucide="camera" class="icon-xl"></i>
-                        </div>
-                        <h3>Câmeras</h3>
-                        <span class="category-count">12 produtos</span>
-                    </a>
-                    <a href="#products" class="category-card" data-category="accessories">
-                        <div class="category-icon">
-                            <i data-lucide="cable" class="icon-xl"></i>
-                        </div>
-                        <h3>Acessórios</h3>
-                        <span class="category-count">36 produtos</span>
-                    </a>
-                    <a href="#products" class="category-card" data-category="gaming">
-                        <div class="category-icon">
-                            <i data-lucide="gamepad-2" class="icon-xl"></i>
-                        </div>
-                        <h3>Gaming</h3>
-                        <span class="category-count">21 produtos</span>
-                    </a>
+                <div class="trust-item">
+                    <i data-lucide="shield-check" class="icon-lg"></i>
+                    <div><strong>Compra segura</strong><span>Pix, boleto e cartão</span></div>
+                </div>
+                <div class="trust-item">
+                    <i data-lucide="refresh-cw" class="icon-lg"></i>
+                    <div><strong>Troca grátis</strong><span>30 dias para devolver</span></div>
+                </div>
+                <div class="trust-item">
+                    <i data-lucide="headset" class="icon-lg"></i>
+                    <div><strong>Suporte real</strong><span>Seg a sex, 9h às 18h</span></div>
                 </div>
             </div>
         </section>
 
-        <!-- Products Section -->
-        <section class="section products-section" id="products">
+        <!-- Categories -->
+        <section class="section" id="categories">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Coleção</span>
-                    <h2 class="section-title">Produtos em Destaque</h2>
-                    <p class="section-subtitle">Os itens mais procurados pelos nossos clientes</p>
+                <div class="section-head">
+                    <div>
+                        <span class="section-tag">Navegue por</span>
+                        <h2 class="section-title">Categorias</h2>
+                    </div>
+                    <p class="section-sub">Seis famílias de produto, todas com estoque próprio.</p>
                 </div>
-                <div class="products-filter">
-                    <button class="filter-btn active" data-filter="all">Todos</button>
-                    <button class="filter-btn" data-filter="headphones">Fones</button>
-                    <button class="filter-btn" data-filter="watches">Relógios</button>
-                    <button class="filter-btn" data-filter="speakers">Caixas de Som</button>
-                    <button class="filter-btn" data-filter="accessories">Acessórios</button>
+                <div class="categories-grid" id="categories-grid"></div>
+            </div>
+        </section>
+
+        <!-- Products -->
+        <section class="section section-products" id="products">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <span class="section-tag">Catálogo</span>
+                        <h2 class="section-title">Produtos em destaque</h2>
+                    </div>
+                    <p class="section-sub">Os itens mais procurados pelos nossos clientes.</p>
                 </div>
-                <div class="products-grid" id="products-grid">
-                    <!-- Products will be injected via JS -->
+
+                <div class="toolbar">
+                    <div class="filters" role="tablist" aria-label="Filtrar por categoria" id="filters"></div>
+                    <div class="toolbar-end">
+                        <span class="result-count" id="result-count" aria-live="polite"></span>
+                        <label class="select">
+                            <span class="sr-only">Ordenar por</span>
+                            <i data-lucide="arrow-up-down" class="icon-sm"></i>
+                            <select id="sort-select">
+                                <option value="relevance">Relevância</option>
+                                <option value="price-asc">Menor preço</option>
+                                <option value="price-desc">Maior preço</option>
+                                <option value="rating">Melhor avaliados</option>
+                                <option value="discount">Maior desconto</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="products-grid" id="products-grid" aria-busy="true"></div>
+
+                <div class="empty-state empty-inline" id="products-empty" hidden>
+                    <i data-lucide="search-x" class="icon-xl"></i>
+                    <p class="empty-title">Nenhum produto nesta seleção</p>
+                    <button class="btn btn-ghost" id="reset-filters" type="button">Limpar filtros</button>
                 </div>
             </div>
         </section>
 
-        <!-- Deals Banner -->
-        <section class="section deals-section" id="deals">
+        <!-- Deals -->
+        <section class="section" id="deals">
             <div class="container">
-                <div class="deals-banner">
-                    <div class="deals-content">
-                        <span class="deals-badge">⏰ Tempo Limitado</span>
-                        <h2 class="deals-title">Super Oferta da Semana</h2>
-                        <p class="deals-description">Até <span class="highlight">50% OFF</span> em produtos selecionados. Aproveite antes que acabe!</p>
-                        <div class="countdown" id="countdown">
-                            <div class="countdown-item">
-                                <span class="countdown-value" id="countdown-days">00</span>
-                                <span class="countdown-label">Dias</span>
-                            </div>
-                            <div class="countdown-separator">:</div>
-                            <div class="countdown-item">
-                                <span class="countdown-value" id="countdown-hours">00</span>
-                                <span class="countdown-label">Horas</span>
-                            </div>
-                            <div class="countdown-separator">:</div>
-                            <div class="countdown-item">
-                                <span class="countdown-value" id="countdown-minutes">00</span>
-                                <span class="countdown-label">Min</span>
-                            </div>
-                            <div class="countdown-separator">:</div>
-                            <div class="countdown-item">
-                                <span class="countdown-value" id="countdown-seconds">00</span>
-                                <span class="countdown-label">Seg</span>
-                            </div>
+                <div class="deals">
+                    <div class="deals-copy">
+                        <span class="eyebrow eyebrow-warm"><i data-lucide="alarm-clock" class="icon-xs"></i> Tempo limitado</span>
+                        <h2 class="deals-title">Semana do áudio: até <em>50% OFF</em></h2>
+                        <p class="deals-text">Seleção de fones, caixas de som e wearables com o menor preço do ano. Estoque limitado por modelo.</p>
+                        <div class="countdown" id="countdown" aria-label="Tempo restante da oferta">
+                            <div class="countdown-cell"><span class="countdown-value" id="cd-days">00</span><span class="countdown-label">dias</span></div>
+                            <div class="countdown-cell"><span class="countdown-value" id="cd-hours">00</span><span class="countdown-label">horas</span></div>
+                            <div class="countdown-cell"><span class="countdown-value" id="cd-minutes">00</span><span class="countdown-label">min</span></div>
+                            <div class="countdown-cell"><span class="countdown-value" id="cd-seconds">00</span><span class="countdown-label">seg</span></div>
                         </div>
-                        <a href="#products" class="btn btn-primary btn-lg">
-                            Ver Ofertas
+                        <button class="btn btn-primary btn-lg" id="deals-cta" type="button">
+                            Ver produtos em oferta
                             <i data-lucide="arrow-right" class="icon-sm"></i>
-                        </a>
+                        </button>
                     </div>
                     <div class="deals-visual">
-                        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500&h=500&fit=crop" alt="Oferta especial">
-                        <div class="deals-discount">-50%</div>
+                        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=720&h=720&fit=crop" alt="Fone de ouvido em oferta" width="720" height="720" loading="lazy">
+                        <span class="deals-stamp">-50%</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Testimonials -->
-        <section class="section testimonials-section">
+        <section class="section" aria-labelledby="testimonials-title">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Feedback</span>
-                    <h2 class="section-title">O que dizem nossos clientes</h2>
-                    <p class="section-subtitle">Milhares de clientes satisfeitos em todo o Brasil</p>
+                <div class="section-head">
+                    <div>
+                        <span class="section-tag">Avaliações</span>
+                        <h2 class="section-title" id="testimonials-title">O que dizem nossos clientes</h2>
+                    </div>
+                    <p class="section-sub">Nota média 4,9 em 3.412 avaliações verificadas.</p>
                 </div>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">★★★★★</div>
-                        <p class="testimonial-text">"Produto de qualidade incrível! Entrega super rápida e embalagem impecável. Com certeza vou comprar novamente."</p>
-                        <div class="testimonial-author">
-                            <div class="testimonial-avatar">ML</div>
-                            <div>
-                                <strong>Maria Lima</strong>
-                                <span>São Paulo, SP</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">★★★★★</div>
-                        <p class="testimonial-text">"Melhor loja online de tecnologia que já encontrei. Preços justos, atendimento top e produtos originais."</p>
-                        <div class="testimonial-author">
-                            <div class="testimonial-avatar">RS</div>
-                            <div>
-                                <strong>Rafael Santos</strong>
-                                <span>Rio de Janeiro, RJ</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">★★★★★</div>
-                        <p class="testimonial-text">"O suporte é sensacional! Tive uma dúvida e me responderam em minutos. Super recomendo para todo mundo."</p>
-                        <div class="testimonial-author">
-                            <div class="testimonial-avatar">AC</div>
-                            <div>
-                                <strong>Ana Costa</strong>
-                                <span>Belo Horizonte, MG</span>
-                            </div>
-                        </div>
+                <div class="testimonials">
+                    <figure class="testimonial">
+                        <div class="stars" aria-label="5 de 5 estrelas"></div>
+                        <blockquote>Produto de qualidade incrível. Entrega em dois dias e embalagem impecável — voltei a comprar na semana seguinte.</blockquote>
+                        <figcaption>
+                            <span class="avatar" data-initials="ML">ML</span>
+                            <span><strong>Maria Lima</strong><small>São Paulo, SP</small></span>
+                            <span class="tag tag-success"><i data-lucide="badge-check" class="icon-xs"></i> Verificada</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="testimonial">
+                        <div class="stars" aria-label="5 de 5 estrelas"></div>
+                        <blockquote>Melhor loja de tecnologia que já usei. Preço justo, produto original e nota fiscal na caixa.</blockquote>
+                        <figcaption>
+                            <span class="avatar" data-initials="RS">RS</span>
+                            <span><strong>Rafael Santos</strong><small>Rio de Janeiro, RJ</small></span>
+                            <span class="tag tag-success"><i data-lucide="badge-check" class="icon-xs"></i> Verificada</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="testimonial">
+                        <div class="stars" aria-label="5 de 5 estrelas"></div>
+                        <blockquote>Tive uma dúvida sobre compatibilidade e responderam em minutos. Suporte que realmente entende do produto.</blockquote>
+                        <figcaption>
+                            <span class="avatar" data-initials="AC">AC</span>
+                            <span><strong>Ana Costa</strong><small>Belo Horizonte, MG</small></span>
+                            <span class="tag tag-success"><i data-lucide="badge-check" class="icon-xs"></i> Verificada</span>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="section" id="about">
+            <div class="container about">
+                <div class="about-copy">
+                    <span class="section-tag">Nossa história</span>
+                    <h2 class="section-title">Sobre a NovaTech</h2>
+                    <p>Desde 2020 trazemos para o Brasil produtos de tecnologia selecionados um a um. Nada de catálogo infinito: preferimos poucas peças, testadas por quem trabalha aqui.</p>
+                    <p>Nossa missão é tornar tecnologia premium acessível — com preço justo, garantia real e uma experiência de compra que respeita o seu tempo.</p>
+                    <ul class="about-list">
+                        <li><i data-lucide="check" class="icon-sm"></i> Produtos 100% originais com nota fiscal</li>
+                        <li><i data-lucide="check" class="icon-sm"></i> Garantia estendida de 12 meses</li>
+                        <li><i data-lucide="check" class="icon-sm"></i> Envio para todo o Brasil</li>
+                        <li><i data-lucide="check" class="icon-sm"></i> Suporte técnico especializado</li>
+                    </ul>
+                </div>
+                <div class="about-media">
+                    <img src="https://images.unsplash.com/photo-1593642532842-98d0fd5ebc1a?w=900&h=1000&fit=crop&q=80" alt="Bancada da NovaTech com notebook e dispositivos em teste" width="900" height="1000" loading="lazy">
+                    <div class="about-badge">
+                        <strong>6 anos</strong>
+                        <span>selecionando tecnologia</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Newsletter -->
-        <section class="section newsletter-section">
+        <section class="section">
             <div class="container">
-                <div class="newsletter-card">
-                    <div class="newsletter-content">
-                        <i data-lucide="mail" class="icon-xl"></i>
-                        <h2>Fique por dentro das novidades</h2>
-                        <p>Receba ofertas exclusivas e lançamentos em primeira mão</p>
-                        <form class="newsletter-form" id="newsletter-form">
-                            <input type="email" placeholder="Seu melhor e-mail" required id="newsletter-email">
-                            <button type="submit" class="btn btn-primary">
-                                Inscrever
-                                <i data-lucide="send" class="icon-sm"></i>
-                            </button>
-                        </form>
+                <div class="newsletter">
+                    <div class="newsletter-copy">
+                        <h2>Ofertas antes de todo mundo</h2>
+                        <p>Um e-mail por semana com lançamentos e cupons exclusivos. Sem spam.</p>
                     </div>
+                    <form class="newsletter-form" id="newsletter-form" novalidate>
+                        <div class="field">
+                            <label class="sr-only" for="newsletter-email">E-mail</label>
+                            <input type="email" id="newsletter-email" placeholder="seu@email.com" required autocomplete="email" aria-describedby="newsletter-error">
+                            <p class="field-error" id="newsletter-error" role="alert"></p>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Inscrever
+                            <i data-lucide="send" class="icon-sm"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section class="section about-section" id="about">
+        <!-- Contact -->
+        <section class="section" id="contact">
             <div class="container">
-                <div class="about-grid">
-                    <div class="about-content">
-                        <span class="section-tag">Nossa história</span>
-                        <h2 class="section-title">Sobre a NovaTech</h2>
-                        <p>Somos apaixonados por tecnologia e inovação. Desde 2020, trazemos para o Brasil os melhores produtos tech do mercado global, cuidadosamente selecionados para garantir qualidade e satisfação.</p>
-                        <p>Nossa missão é democratizar o acesso à tecnologia premium, oferecendo preços justos e uma experiência de compra excepcional.</p>
-                        <div class="about-features">
-                            <div class="about-feature">
-                                <i data-lucide="check-circle" class="icon"></i>
-                                <span>Produtos 100% originais</span>
-                            </div>
-                            <div class="about-feature">
-                                <i data-lucide="check-circle" class="icon"></i>
-                                <span>Garantia estendida</span>
-                            </div>
-                            <div class="about-feature">
-                                <i data-lucide="check-circle" class="icon"></i>
-                                <span>Envio para todo o Brasil</span>
-                            </div>
-                            <div class="about-feature">
-                                <i data-lucide="check-circle" class="icon"></i>
-                                <span>Suporte especializado</span>
-                            </div>
-                        </div>
+                <div class="section-head">
+                    <div>
+                        <span class="section-tag">Fale conosco</span>
+                        <h2 class="section-title">Entre em contato</h2>
                     </div>
-                    <div class="about-image">
-                        <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&h=400&fit=crop" alt="Sobre a NovaTech">
-                    </div>
+                    <p class="section-sub">Respondemos em até 1 dia útil.</p>
                 </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="section contact-section" id="contact">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Fale conosco</span>
-                    <h2 class="section-title">Entre em Contato</h2>
-                    <p class="section-subtitle">Estamos prontos para ajudar você</p>
-                </div>
-                <div class="contact-grid">
-                    <div class="contact-info">
-                        <div class="contact-card">
-                            <i data-lucide="map-pin" class="icon-lg"></i>
-                            <div>
-                                <strong>Endereço</strong>
-                                <p>Av. Paulista, 1000 - São Paulo, SP</p>
+                <div class="contact">
+                    <ul class="contact-list">
+                        <li><i data-lucide="map-pin" class="icon-lg"></i><div><strong>Endereço</strong><span>Av. Paulista, 1000 — São Paulo, SP</span></div></li>
+                        <li><i data-lucide="phone" class="icon-lg"></i><div><strong>Telefone</strong><span>(11) 99999-9999</span></div></li>
+                        <li><i data-lucide="mail" class="icon-lg"></i><div><strong>E-mail</strong><span>contato@novatech.com.br</span></div></li>
+                        <li><i data-lucide="clock" class="icon-lg"></i><div><strong>Horário</strong><span>Seg a sex, 9h às 18h</span></div></li>
+                    </ul>
+                    <form class="contact-form" id="contact-form" novalidate>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="contact-name">Nome</label>
+                                <input type="text" id="contact-name" placeholder="Seu nome completo" required autocomplete="name" aria-describedby="contact-name-error">
+                                <p class="field-error" id="contact-name-error" role="alert"></p>
+                            </div>
+                            <div class="field">
+                                <label for="contact-email">E-mail</label>
+                                <input type="email" id="contact-email" placeholder="seu@email.com" required autocomplete="email" aria-describedby="contact-email-error">
+                                <p class="field-error" id="contact-email-error" role="alert"></p>
                             </div>
                         </div>
-                        <div class="contact-card">
-                            <i data-lucide="phone" class="icon-lg"></i>
-                            <div>
-                                <strong>Telefone</strong>
-                                <p>(11) 99999-9999</p>
-                            </div>
-                        </div>
-                        <div class="contact-card">
-                            <i data-lucide="mail" class="icon-lg"></i>
-                            <div>
-                                <strong>E-mail</strong>
-                                <p>contato@novatech.com.br</p>
-                            </div>
-                        </div>
-                        <div class="contact-card">
-                            <i data-lucide="clock" class="icon-lg"></i>
-                            <div>
-                                <strong>Horário</strong>
-                                <p>Seg-Sex: 9h às 18h</p>
-                            </div>
-                        </div>
-                    </div>
-                    <form class="contact-form" id="contact-form">
-                        <div class="form-group">
-                            <label for="contact-name">Nome</label>
-                            <input type="text" id="contact-name" placeholder="Seu nome completo" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-email">E-mail</label>
-                            <input type="email" id="contact-email" placeholder="seu@email.com" required>
-                        </div>
-                        <div class="form-group">
+                        <div class="field">
                             <label for="contact-subject">Assunto</label>
-                            <input type="text" id="contact-subject" placeholder="Como podemos ajudar?" required>
+                            <input type="text" id="contact-subject" placeholder="Como podemos ajudar?" required aria-describedby="contact-subject-error">
+                            <p class="field-error" id="contact-subject-error" role="alert"></p>
                         </div>
-                        <div class="form-group">
+                        <div class="field">
                             <label for="contact-message">Mensagem</label>
-                            <textarea id="contact-message" rows="4" placeholder="Escreva sua mensagem..." required></textarea>
+                            <textarea id="contact-message" rows="5" placeholder="Escreva sua mensagem…" required aria-describedby="contact-message-error"></textarea>
+                            <p class="field-error" id="contact-message-error" role="alert"></p>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">
-                            Enviar Mensagem
+                            Enviar mensagem
                             <i data-lucide="send" class="icon-sm"></i>
                         </button>
                     </form>
@@ -504,76 +488,81 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="#" class="logo">
-                        <span class="logo-icon">⚡</span>
-                        <span class="logo-text">Nova<span class="logo-accent">Tech</span></span>
+                    <a href="#home" class="logo" aria-label="NovaTech — ir para o início">
+                        <span class="logo-word" aria-hidden="true">N<svg class="logo-nova" viewBox="0 0 100 100" role="presentation"><path class="logo-ring" fill="currentColor" fill-rule="evenodd" d="M50 0 a46 50 0 1 0 .1 0 Z M50 13.91 a26.71 36.09 0 1 1 -.1 0 Z"/><path class="logo-star" d="M50.00 14.63 C53.66 37.97 58.90 45.05 76.18 50.00 C58.90 54.95 53.66 62.03 50.00 85.37 C46.34 62.03 41.10 54.95 23.82 50.00 C41.10 45.05 46.34 37.97 50.00 14.63 Z"/></svg>VA</span>
+                        <span class="logo-rule" aria-hidden="true"></span>
+                        <span class="logo-tech" aria-hidden="true">TECH</span>
                     </a>
-                    <p>Sua loja de tecnologia premium. Os melhores produtos com os melhores preços.</p>
-                    <div class="social-links">
+                    <p>Loja de tecnologia premium. Curadoria própria, preço justo e entrega para todo o Brasil.</p>
+                    <div class="social">
                         <a href="#" class="social-link" aria-label="Instagram">
-                            <i data-lucide="instagram" class="icon"></i>
+                            <svg class="icon-sm" viewBox="0 0 24 24" aria-hidden="true">
+                                <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                                <circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                                <circle cx="17.3" cy="6.7" r="1.25" fill="currentColor"/>
+                            </svg>
                         </a>
                         <a href="#" class="social-link" aria-label="Facebook">
-                            <i data-lucide="facebook" class="icon"></i>
+                            <svg class="icon-sm" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.29-.04-1.27-.12-2.41-.12-2.39 0-4.02 1.46-4.02 4.13v2.29H7.5V13h2.77v8h3.23Z"/>
+                            </svg>
                         </a>
-                        <a href="#" class="social-link" aria-label="Twitter">
-                            <i data-lucide="twitter" class="icon"></i>
+                        <a href="#" class="social-link" aria-label="X">
+                            <svg class="icon-sm" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill="currentColor" d="M17.4 3h3.2l-7 8 8.2 10h-6.4l-5-6.4L4.6 21H1.4l7.5-8.6L1 3h6.6l4.5 5.9L17.4 3Zm-1.1 16h1.8L7.8 4.7H5.9L16.3 19Z"/>
+                            </svg>
                         </a>
                         <a href="#" class="social-link" aria-label="YouTube">
-                            <i data-lucide="youtube" class="icon"></i>
+                            <svg class="icon-sm" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill="currentColor" d="M21.6 7.2a2.5 2.5 0 0 0-1.75-1.77C18.3 5 12 5 12 5s-6.3 0-7.85.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.75 1.77C5.7 19 12 19 12 19s6.3 0 7.85-.43a2.5 2.5 0 0 0 1.75-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15.1V8.9l5.4 3.1-5.4 3.1Z"/>
+                            </svg>
                         </a>
                     </div>
                 </div>
-                <div class="footer-links">
-                    <h4>Navegação</h4>
+                <nav class="footer-col" aria-label="Navegação do rodapé">
+                    <h3>Navegação</h3>
                     <a href="#home">Início</a>
-                    <a href="#products">Produtos</a>
                     <a href="#categories">Categorias</a>
+                    <a href="#products">Produtos</a>
                     <a href="#deals">Ofertas</a>
-                </div>
-                <div class="footer-links">
-                    <h4>Suporte</h4>
-                    <a href="#contact">Central de Ajuda</a>
-                    <a href="#contact">Rastrear Pedido</a>
-                    <a href="#contact">Política de Troca</a>
-                    <a href="#contact">FAQ</a>
-                </div>
-                <div class="footer-links">
-                    <h4>Empresa</h4>
-                    <a href="#about">Sobre Nós</a>
-                    <a href="#contact">Trabalhe Conosco</a>
-                    <a href="#contact">Termos de Uso</a>
+                </nav>
+                <nav class="footer-col" aria-label="Suporte">
+                    <h3>Suporte</h3>
+                    <a href="#contact">Central de ajuda</a>
+                    <a href="#contact">Rastrear pedido</a>
+                    <a href="#contact">Política de troca</a>
+                    <a href="#contact">Perguntas frequentes</a>
+                </nav>
+                <nav class="footer-col" aria-label="Empresa">
+                    <h3>Empresa</h3>
+                    <a href="#about">Sobre nós</a>
+                    <a href="#contact">Trabalhe conosco</a>
+                    <a href="#contact">Termos de uso</a>
                     <a href="#contact">Privacidade</a>
-                </div>
+                </nav>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 NovaTech. Todos os direitos reservados.</p>
-                <div class="payment-methods">
-                    <span>Formas de pagamento:</span>
-                    <div class="payment-icons">
-                        <span class="payment-icon">💳 Visa</span>
-                        <span class="payment-icon">💳 Master</span>
-                        <span class="payment-icon">📱 Pix</span>
-                        <span class="payment-icon">📋 Boleto</span>
-                    </div>
+                <p>&copy; <span id="year">2026</span> NovaTech. Todos os direitos reservados.</p>
+                <div class="payments">
+                    <span>Pagamento:</span>
+                    <span class="pay">Visa</span>
+                    <span class="pay">Mastercard</span>
+                    <span class="pay">Elo</span>
+                    <span class="pay">Pix</span>
+                    <span class="pay">Boleto</span>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Toast Notification -->
-    <div class="toast-container" id="toast-container"></div>
+    <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
 
-    <!-- Back to Top -->
-    <button class="back-to-top" id="back-to-top" aria-label="Voltar ao topo">
-        <i data-lucide="chevron-up" class="icon"></i>
+    <button class="back-to-top" id="back-to-top" type="button" aria-label="Voltar ao topo">
+        <i data-lucide="arrow-up" class="icon"></i>
     </button>
-
-    <script src="app.js"></script>
 </body>
 </html>
